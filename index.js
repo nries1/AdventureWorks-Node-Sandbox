@@ -28,6 +28,7 @@ app.post('/signin',(req,res) => {
         config.authentication.options.userName=fields.username;
         config.authentication.options.password=fields.password;
         config.server=fields.servername;
+        config.options.database=fields.database;
         initConnect(config,res);
     });
 });
@@ -110,4 +111,4 @@ console.log("listening at "+port)
 //default request         "SELECT TOP 20 pc.Name as CategoryName, p.name as ProductName FROM [SalesLT].[ProductCategory] pc "
 //            + "JOIN [SalesLT].[Product] p ON pc.productcategoryid = p.productcategoryid"
 //SELECT Name FROM [SalesLT].[ProductCategory]
-//uplearning.database.windows.net
+//
