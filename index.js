@@ -83,6 +83,7 @@ const initConnect = (configObj,response) => {
 );*/
 
 function queryDatabase(req,res) {
+    var queryResult = [];
     console.log('Reading rows from the Table...');
     // Read all rows from table
     var request = new Request(req,
@@ -92,12 +93,13 @@ function queryDatabase(req,res) {
             console.log(rows);
             console.log(rowCount + ' row(s) returned');
             //process.exit();
-            res.send("query successful")
+            res.send(queryResult.join("\n"));
         }
     );
 
     request.on('row', function(columns) {
         columns.forEach(function(column) {
+            queryResult.push(column.value);
             console.log("%s\t%s", column.metadata.colName, column.value);
         });
     });
